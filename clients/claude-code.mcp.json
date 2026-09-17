@@ -1,0 +1,26 @@
+{
+  "_comment": "Claude Code project-scope MCP configuration. Save as .mcp.json at your project root and commit it to share the server with your team; secrets stay out via ${VAR} expansion, which Claude Code performs on command, args, env, url and headers. Local scope (~/.claude.json, not committed) is written for you by `claude mcp add`. The 'type' field accepts 'streamable-http' as an alias for 'http'. IMPORTANT: an entry with a 'url' but no 'type' is a configuration error — Claude Code reads a typeless entry as stdio and skips the server.",
+  "mcpServers": {
+    "catalogue": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/Users/YOU/projects/37-mcp-server-kit/content/typescript/dist/typescript/src/index.js"
+      ],
+      "env": {
+        "MCP_TRANSPORT": "stdio",
+        "MCP_LOG_LEVEL": "${MCP_LOG_LEVEL:-info}",
+        "MCP_LOG_MODE": "json"
+      }
+    },
+
+    "catalogue-http": {
+      "_comment": "Bearer token read from your shell environment, so nothing secret is committed. The equivalent one-liner is: claude mcp add --transport http catalogue-http http://127.0.0.1:8765/mcp --header \"Authorization: Bearer $MCP_AUTH_TOKEN\"",
+      "type": "http",
+      "url": "http://127.0.0.1:8765/mcp",
+      "headers": {
+        "Authorization": "Bearer ${MCP_AUTH_TOKEN}"
+      }
+    }
+  }
+}

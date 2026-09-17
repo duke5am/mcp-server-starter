@@ -1,0 +1,24 @@
+{
+  "_comment": "Cursor MCP configuration. Project scope: .cursor/mcp.json in your repo (committable). Global scope: ~/.cursor/mcp.json in your home directory. Top-level key is 'mcpServers'. Cursor interpolates ${env:NAME}, ${userHome}, ${workspaceFolder}, ${workspaceFolderBasename} and ${pathSeparator} inside command, args, env, url and headers. Replace every path with an absolute one.",
+  "mcpServers": {
+    "catalogue": {
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/content/typescript/dist/typescript/src/index.js"
+      ],
+      "env": {
+        "MCP_TRANSPORT": "stdio",
+        "MCP_LOG_LEVEL": "info",
+        "MCP_LOG_MODE": "json"
+      }
+    },
+
+    "catalogue-http": {
+      "_comment": "The same server over the Streamable HTTP transport. Requires the server to be running separately (MCP_TRANSPORT=http MCP_AUTH_TOKEN=... node dist/typescript/src/index.js). Cursor sends the headers on every request; ${env:MCP_AUTH_TOKEN} keeps the token out of this file.",
+      "url": "http://127.0.0.1:8765/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:MCP_AUTH_TOKEN}"
+      }
+    }
+  }
+}

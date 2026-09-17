@@ -1,0 +1,18 @@
+{
+  "_comment": "Claude Desktop MCP configuration. Copy to: macOS ~/Library/Application Support/Claude/claude_desktop_config.json ; Windows %APPDATA%\\Claude\\claude_desktop_config.json . Open it from Claude Desktop > Settings > Developer > Edit Config. Replace EVERY path below with an absolute path — '~' is not expanded and relative paths are resolved against the client's working directory, not yours. Restart Claude Desktop completely (quit, not close the window) after editing.",
+  "mcpServers": {
+    "catalogue": {
+      "command": "/usr/local/bin/node",
+      "args": [
+        "/Users/YOU/projects/37-mcp-server-kit/content/typescript/dist/typescript/src/index.js"
+      ],
+      "env": {
+        "MCP_TRANSPORT": "stdio",
+        "MCP_LOG_LEVEL": "info",
+        "MCP_LOG_MODE": "json",
+        "MCP_RATE_LIMIT_CAPACITY": "60",
+        "MCP_RATE_LIMIT_REFILL_PER_SEC": "30"
+      }
+    }
+  }
+}

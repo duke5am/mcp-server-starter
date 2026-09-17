@@ -1,0 +1,37 @@
+{
+  "_comment": "VS Code / GitHub Copilot agent-mode MCP configuration. Workspace scope: .vscode/mcp.json (committable, recommended so the team shares it). User profile scope: run the 'MCP: Open User Configuration' command and paste the same 'servers' block. NOTE THE DIFFERENCE: VS Code uses the top-level key 'servers', NOT 'mcpServers', and requires 'type': 'stdio' on local servers. A config copied from Claude Desktop will be silently ignored here.",
+  "servers": {
+    "catalogue": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/content/typescript/dist/typescript/src/index.js"
+      ],
+      "env": {
+        "MCP_TRANSPORT": "stdio",
+        "MCP_LOG_LEVEL": "info",
+        "MCP_LOG_MODE": "json"
+      },
+      "_comment_cwd": "Optional. Defaults to the workspace folder. Set it explicitly if your paths are relative to somewhere else.",
+      "cwd": "${workspaceFolder}"
+    },
+
+    "catalogue-http": {
+      "_comment": "Streamable HTTP. VS Code also accepts 'sse' and 'ws' here. ${input:...} prompts once and stores the value, so the token never lands in this file. The matching 'inputs' array is at the bottom of this file.",
+      "type": "http",
+      "url": "http://127.0.0.1:8765/mcp",
+      "headers": {
+        "Authorization": "Bearer ${input:mcp-token}"
+      }
+    }
+  },
+
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "mcp-token",
+      "description": "Bearer token for the catalogue MCP server",
+      "password": true
+    }
+  ]
+}
