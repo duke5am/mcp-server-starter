@@ -99,4 +99,4 @@ The paid kit adds the HTTP transport with bearer auth and Origin/Host validation
 token-bucket rate limiting, a six-tool worked server, the `SECURITY.md` and
 `TOOL-DESIGN.md` guides, and **287 tests** including an end-to-end stdio suite.
 
-→ **Production MCP Server Kit**: <!-- GUMROAD-LINK -->
+→ More developer tooling like this: **[duke5am.gumroad.com](https://duke5am.gumroad.com)** <!-- GUMROAD-LINK -->
